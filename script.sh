@@ -1,8 +1,21 @@
 #!/bin/bash
-# Updates, upgrades and cleans the system (Pop!_OS / Ubuntu / Debian)
+# Hardened setup för Pop!_OS / Ubuntu / Debian
 
-set -e  # stoppa om något kommando misslyckas
+set -e
 
+# -------------------------------
+# Kontrollera om curl finns
+# -------------------------------
+if ! command -v curl &> /dev/null
+then
+    echo "📦 curl saknas, installerar..."
+    sudo apt update
+    sudo apt install -y curl
+fi
+
+# -------------------------------
+# Uppdatera och uppgradera systemet
+# -------------------------------
 echo "🔄 Uppdaterar paketlistor..."
 sudo apt update
 
@@ -11,8 +24,56 @@ sudo apt full-upgrade -y
 
 echo "🧹 Rensar oanvända paket..."
 sudo apt autoremove --purge -y
-
-echo "🗑️  Tömmer cache..."
 sudo apt clean
 
-echo "✅ Klart!"
+# -------------------------------
+# Installera säkerhetsverktyg
+# -------------------------------
+echo "🛡️  Installerar säkerhetsverktyg..."
+sudo apt install -y fail2ban ufw auditd rkhunter unattended-upgrades
+
+# -------------------------------
+# Konfigurera UFW
+# -------------------------------
+echo "⚙️  Konfigurerar UFW..."
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw allow 22/tcp   # SSH
+sudo ufw --force enable
+
+# -------------------------------
+# Konfigurera Fail2Ban
+# -------------------------------
+echo "🔒 Startar och aktiverar Fail2Ban..."
+sudo systemctl enable fail2ban
+sudo systemctl start fail2ban
+
+# -------------------------------
+# Säker SSH
+# -------------------------------
+echo "🔑 Konfigurerar SSH..."
+sudo sed -i 's/^#PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
+sudo sed -i 's/^#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
+sudo systemctl restart sshd
+
+# -------------------------------
+# Automatisk säkerhetsuppdatering
+# -------------------------------
+echo "⚡ Aktiverar automatiska säkerhetsuppdateringar..."
+sudo dpkg-reconfigure -plow unattended-upgrades
+
+# -------------------------------
+# Hårda filrättigheter
+# -------------------------------
+echo "🛡️ Begränsar rättigheter i hemkataloger..."
+chmod 700 $HOME
+
+# -------------------------------
+# Kontrollera rootkit
+# -------------------------------
+echo "🔍 Initierar rootkit-kontroll..."
+sudo rkhunter --update
+sudo rkhunter --propupd
+sudo rkhunter --check --sk
+
+echo "✅ Grundläggande härdning klar!"
