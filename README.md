@@ -1,6 +1,6 @@
 # Linux Hardening
 
-Ett enkelt repo för att snabbt härda en ny Pop!_OS / Ubuntu / Debian-maskin.
+Ett enkelt repo för att snabbt härda Ubuntu / Debian-maskin samt installera Fail2Ban och UFW.
 
 ## Användning
 
