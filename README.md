@@ -1,9 +1,10 @@
-# Fresh-Linux-Install
-Script for a fresh linux install with updating, hardening, UFW, Fail2Ban and cleaning up
+# Linux Hardening
 
-### Usage
+Ett enkelt repo för att snabbt härda en ny Pop!_OS / Ubuntu / Debian-maskin.
 
-Run directly from GitHub without downloading the whole repo:
+## Användning
+
+### Kör direkt från GitHub
 
 ```bash
-curl -s https://raw.githubusercontent.com/haxdoggy/Fresh-Linux-Install/main/script.sh | bash
+bash -c "$(curl -s https://raw.githubusercontent.com/<DITT_GITHUB_ANVÄNDARNAMN>/linux-hardening/main/update.sh)"
