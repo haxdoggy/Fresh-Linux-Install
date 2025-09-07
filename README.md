@@ -7,4 +7,4 @@ Ett enkelt repo för att snabbt härda Ubuntu / Debian-maskin samt installera Fa
 ### Kör direkt från GitHub
 
 ```bash
-bash -c "$(curl -s https://raw.githubusercontent.com/haxdoggy/fresh-linux-install/main/script.sh)"
+bash -c "$(wget -qO- https://raw.githubusercontent.com/haxdoggy/fresh-linux-install/main/script.sh)"
