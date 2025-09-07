@@ -7,4 +7,4 @@ Ett enkelt repo för att snabbt härda en ny Pop!_OS / Ubuntu / Debian-maskin.
 ### Kör direkt från GitHub
 
 ```bash
-bash -c "$(curl -s https://raw.githubusercontent.com/<DITT_GITHUB_ANVÄNDARNAMN>/linux-hardening/main/update.sh)"
+bash -c "$(curl -s https://raw.githubusercontent.com/haxdoggy/fresh-linux-install/main/script.sh)"
