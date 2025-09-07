@@ -6,4 +6,4 @@ Script for a fresh linux install with updating, hardening, UFW, Fail2Ban and cle
 Run directly from GitHub without downloading the whole repo:
 
 ```bash
-curl -s https://raw.githubusercontent.com/haxdoggy/Fresh-Linux-Install/main/update.sh | bash
+curl -s https://raw.githubusercontent.com/haxdoggy/Fresh-Linux-Install/main/script.sh | bash
