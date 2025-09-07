@@ -6,11 +6,18 @@ set -e
 # -------------------------------
 # Kontrollera om curl eller wget finns
 # -------------------------------
-if ! command -v curl &> /dev/null && ! command -v wget &> /dev/null; then
+if command -v curl &> /dev/null; then
+    DOWNLOAD_TOOL="curl -s"
+elif command -v wget &> /dev/null; then
+    DOWNLOAD_TOOL="wget -qO-"
+else
     echo "📦 Varken curl eller wget hittades. Installerar curl..."
     sudo apt update
     sudo apt install -y curl
+    DOWNLOAD_TOOL="curl -s"
 fi
+
+echo "✔️ Använder nedladdningsverktyg: $DOWNLOAD_TOOL"
 
 # -------------------------------
 # Uppdatera och uppgradera systemet
