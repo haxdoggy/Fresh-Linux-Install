@@ -1,5 +1,5 @@
 #!/bin/bash
-# Uppdaterar, uppgraderar och rensar systemet (Pop!_OS / Ubuntu / Debian)
+# Updates, upgrades and cleans the system (Pop!_OS / Ubuntu / Debian)
 
 set -e  # stoppa om något kommando misslyckas
 
