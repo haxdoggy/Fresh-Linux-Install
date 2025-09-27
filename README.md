@@ -1,10 +1,10 @@
-# Linux Hardening
+# Linux startup commands and hardening
 
-Ett enkelt repo för att snabbt härda Ubuntu / Debian-maskin samt installera Fail2Ban och UFW.
+Simple repo to run on Linux startup, updating the system and adding Fail2Ban and UFW.
 
-## Användning
+## Usage
 
-### Kör direkt från GitHub
+### Run direcly from Github
 
 ```bash
 bash -c "$(wget -qO- https://raw.githubusercontent.com/haxdoggy/fresh-linux-install/main/script.sh)"
